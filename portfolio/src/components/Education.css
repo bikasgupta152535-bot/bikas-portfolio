@@ -1,0 +1,59 @@
+.education__timeline {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto;
+  padding-left: 30px;
+  border-left: 2px solid var(--border);
+}
+
+.education__item {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.education__item:last-child {
+  margin-bottom: 0;
+}
+
+.education__dot {
+  position: absolute;
+  left: -37px;
+  top: 26px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--gradient-accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.education__card {
+  padding: 24px 26px;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.education__card:hover {
+  transform: translateX(4px);
+  border-color: var(--accent-2);
+}
+
+.education__degree {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+
+.education__institution {
+  color: var(--text-primary);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.education__duration {
+  color: var(--accent-2);
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+}
+
+.education__details {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}

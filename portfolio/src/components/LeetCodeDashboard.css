@@ -1,0 +1,148 @@
+.leetcode__panel {
+  padding: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.leetcode__state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 50px 0;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.leetcode__state--error {
+  color: var(--danger);
+}
+
+.spin {
+  animation: spin 1.4s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.leetcode__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 36px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+
+.leetcode__username {
+  color: var(--text-tertiary);
+  font-size: 0.86rem;
+  margin-bottom: 6px;
+}
+
+.leetcode__solved {
+  font-family: var(--font-display);
+  font-size: 2.1rem;
+  font-weight: 700;
+}
+
+.leetcode__solved-total {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.leetcode__rings {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 36px;
+  margin-bottom: 36px;
+}
+
+.progress-ring {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress-ring__track {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 7;
+}
+
+.progress-ring__fill {
+  fill: none;
+  stroke-width: 7;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  transition: stroke-dashoffset 1s var(--ease);
+}
+
+.progress-ring__value {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  fill: var(--text-primary);
+}
+
+.progress-ring__total {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  fill: var(--text-tertiary);
+}
+
+.progress-ring__label {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.leetcode__meta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.leetcode__meta-item {
+  text-align: center;
+  padding: 18px;
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+}
+
+.leetcode__meta-value {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--accent-2);
+}
+
+.leetcode__meta-label {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.leetcode__note {
+  text-align: center;
+  font-size: 0.76rem;
+  color: var(--text-tertiary);
+}
+
+@media (max-width: 640px) {
+  .leetcode__panel {
+    padding: 26px 18px;
+  }
+  .leetcode__meta {
+    grid-template-columns: 1fr;
+  }
+}
