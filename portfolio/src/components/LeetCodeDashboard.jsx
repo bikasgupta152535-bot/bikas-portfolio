@@ -6,34 +6,15 @@ import { leetcodeFallback } from "../data/leetcodeFallback.js";
 import { socialLinks } from "../data/social.js";
 import "./LeetCodeDashboard.css";
 
-/**
- * HOW TO CONNECT A REAL LEETCODE API LATER:
- * 1. Pick a LeetCode stats API (several free community APIs exist, or your own backend proxy).
- * 2. Replace the body of `fetchLeetCodeStats` below with a real fetch call, e.g.:
- *
- *    const res = await fetch(`https://your-api.example.com/${username}`);
- *    if (!res.ok) throw new Error("Failed to load LeetCode stats");
- *    const data = await res.json();
- *    return {
- *      totalSolved: data.totalSolved,
- *      totalQuestions: data.totalQuestions,
- *      easySolved: data.easySolved,
- *      easyTotal: data.totalEasy,
- *      mediumSolved: data.mediumSolved,
- *      mediumTotal: data.totalMedium,
- *      hardSolved: data.hardSolved,
- *      hardTotal: data.totalHard,
- *      currentStreak: data.streak ?? 0,
- *      ranking: data.ranking ?? null,
- *    };
- *
- * 3. That's it — the component below already handles loading / error / success states.
- */
+
 async function fetchLeetCodeStats() {
-  // Simulated network delay so the loading state is visible; safe to remove once a real API is wired in.
-  await new Promise((resolve) => setTimeout(resolve, 500));
-  // No live API connected yet — using documented placeholder data (see src/data/leetcodeFallback.js).
-  return leetcodeFallback;
+  const response = await fetch("/api/leetcode");
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch LeetCode stats");
+  }
+
+  return await response.json();
 }
 
 function ProgressRing({ value, total, label, colorVar, delay = 0 }) {
@@ -80,7 +61,7 @@ function ProgressRing({ value, total, label, colorVar, delay = 0 }) {
 
 export default function LeetCodeDashboard() {
   const ref = useReveal();
-  const [status, setStatus] = useState("loading"); // "loading" | "error" | "success"
+  const [status, setStatus] = useState("loading"); 
   const [stats, setStats] = useState(null);
 
   useEffect(() => {
