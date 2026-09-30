@@ -14,7 +14,16 @@ async function fetchLeetCodeStats() {
     throw new Error("Failed to fetch LeetCode stats");
   }
 
-  return await response.json();
+  const data = await response.json();
+
+return {
+    ...data,
+    totalQuestions: 4033,
+    easyTotal: 961,
+    mediumTotal: 2150,
+    hardTotal: 967,
+    currentStreak: 0
+};
 }
 
 function ProgressRing({ value, total, label, colorVar, delay = 0 }) {
