@@ -9,11 +9,11 @@ const initialForm = { name: "", email: "", message: "" };
 
 function validate(form) {
   const errors = {};
-  if (!form.name.trim()) errors.name = "Bikas Kumar GUpta";
+  if (!form.name.trim()) errors.name = "Please enter your name.";
   if (!form.email.trim()) {
-    errors.email = "bikasgupta152535@gmail.com";
+    errors.email = "Please enter a valid email.";
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-    errors.email = "bikasgupta152535@gmail.com";
+    errors.email = "Please enter a valid email address.";
   }
   if (!form.message.trim()) {
     errors.message = "Please write a short message.";
