@@ -11,7 +11,7 @@ function validate(form) {
   const errors = {};
   if (!form.name.trim()) errors.name = "Please enter your name.";
   if (!form.email.trim()) {
-    errors.email = "Please enter a valid email.";
+    errors.email = "Please enter your email.";
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
     errors.email = "Please enter a valid email address.";
   }
