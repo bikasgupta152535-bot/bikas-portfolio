@@ -35,16 +35,42 @@ export default function Contact() {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: undefined }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const nextErrors = validate(form);
-    setErrors(nextErrors);
-    if (Object.keys(nextErrors).length > 0) return;
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-   
-    setStatus("success");
-    setForm(initialForm);
-  };
+  const nextErrors = validate(form);
+  setErrors(nextErrors);
+
+  if (Object.keys(nextErrors).length > 0) return;
+
+  setStatus("sending");
+
+  const formData = new FormData();
+
+  formData.append("access_key", "a07c428d-e17f-4dad-b6d4-ba2ac2d25094");
+  formData.append("name", form.name);
+  formData.append("email", form.email);
+  formData.append("message", form.message);
+  formData.append("subject", "New Portfolio Contact Message");
+
+  try {
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      setStatus("success");
+      setForm(initialForm);
+    } else {
+      setStatus("error");
+    }
+  } catch (error) {
+    setStatus("error");
+  }
+};
 
   return (
     <section id="contact" className="section contact section-bg-glow">
@@ -118,11 +144,23 @@ export default function Contact() {
               Send Message
             </button>
 
-            {status === "success" && (
-              <p className="form-success" role="status">
-                <CheckCircleIcon width={16} height={16} /> Thanks! Your message has been captured locally — connect a backend to deliver it to your inbox.
-              </p>
-            )}
+           {status === "sending" && (
+  <p className="form-success" role="status">
+    Sending your message...
+  </p>
+)}
+
+{status === "success" && (
+  <p className="form-success" role="status">
+    <CheckCircleIcon width={16} height={16} /> Message sent successfully! I'll get back to you soon.
+  </p>
+)}
+
+{status === "error" && (
+  <p className="form-error" role="alert">
+    <AlertCircleIcon width={14} height={14} /> Failed to send the message. Please try again.
+  </p>
+)}
           </form>
 
           <div className="contact__side">
